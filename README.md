@@ -5,6 +5,8 @@
 [![](https://img.shields.io/badge/cnblogs-@Noone-green.svg?colorA=abcdef)](https://blog.csdn.net/weixin_45120915?spm=1010.2135.3001.5113)
 ![](https://img.shields.io/badge/platform-Windows/MacOS/Linux-lightgrey.svg)
 <a href="https://travis-ci.org/onevcat/Kingfisher"><img src="https://img.shields.io/travis/onevcat/Kingfisher/master.svg"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+
 
 # 使用方法
 
