@@ -11,5 +11,6 @@
       @yield('content')
     </div>
     @include('layouts._foot')
+    <script src="{{ mix('js/app.js') }}"></script>
   </body>
 </html>

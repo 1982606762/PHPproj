@@ -1,2 +1,2 @@
 require('./bootstrap');
-alert("asdasd")
+console.log(123)

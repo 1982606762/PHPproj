@@ -10051,3 +10051,26 @@ section.user_info h1 {
   max-width: 50px;
   border-radius: 50%;
 }
+
+.success {
+  color: green;
+  font: message-box;
+}
+
+.danger {
+  color: red;
+  font: message-box;
+}
+
+.cancel {
+  display: block;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+}
+
+.cancel :hover {
+  color: #fff;
+  background-color: #0069d9;
+  border-color: #0062cc;
+}

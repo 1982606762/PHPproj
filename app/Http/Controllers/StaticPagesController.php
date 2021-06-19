@@ -15,4 +15,9 @@ class StaticPagesController extends Controller
     {
         return view('static_pages/help');
     }
+
+    public function checkin()
+    {
+        return view('static_pages/checkin');
+    }
 }
