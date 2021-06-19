@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\UsersController as ControllersUsersController;
 use App\Models\reservation;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -16,6 +15,26 @@ class UsersController extends Controller
     }
 
     public function show(User $user)
+    {
+        $this->showuser($user);
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|email|unique:users|max:255',
+            'name' => 'required|min:6|unique:users|alpha_dash',
+            'password' => 'required|min:6|confirmed|'
+        ]);
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+        $this->showuser($user);
+    }
+
+    function showuser(User $user)
     {
         Auth::login($user);
         $GLOBALS['conf'] = require_once("config/days.php");
@@ -33,22 +52,9 @@ class UsersController extends Controller
         $assign['reservationInfo'] = $data;
         $assign['user'] = $currentUser;
         $assign['cuTtRsv'] = $currentUserTotal;
-        return view('users.show', $assign);
-    }
+        session()->flash('success', '注册成功');
 
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-            'email' => 'required|email|unique:users|max:255',
-            'name' => 'required|min:6|unique:users|alpha_dash',
-            'password' => 'required|min:6|confirmed|'
-        ]);
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-        ]);
-        UsersController::show($user);
+        return view('users.show', $assign);
     }
 
 }
