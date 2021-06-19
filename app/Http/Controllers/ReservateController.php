@@ -49,7 +49,6 @@ class ReservateController extends Controller
             if (Auth::check()) {
                 $currentUser = Auth::user();
                 $data = Reservation::where('invitation', $invitationCode)->first();
-                //Prevent other users from deleting information
                 if ($data->email == $currentUser['email']) {
                     $result = Reservation::where('invitation', $invitationCode)->delete();
                     return redirect()->route('users.show', Auth::user());

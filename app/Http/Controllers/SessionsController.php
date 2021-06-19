@@ -23,9 +23,7 @@ class SessionsController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             session()->flash('info', "登陆成功");
             $GLOBALS['conf'] = require_once("config/days.php");
-            //read current user.
             $currentUser = Auth::user();
-            //grab current user reservation info
             $data = reservation::where('email', $currentUser['email'])->orderBy('reserve_date_at', 'desc')->get();
             $currentUserTotal = reservation::where('email',$currentUser['email'])->count();
 
