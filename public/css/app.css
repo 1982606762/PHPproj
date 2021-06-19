@@ -10069,7 +10069,7 @@ section.user_info h1 {
   border-radius: 5px;
 }
 
-.cancel :hover {
+.cancel:hover {
   color: #fff;
   background-color: #0069d9;
   border-color: #0062cc;

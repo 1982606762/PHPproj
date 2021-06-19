@@ -49,7 +49,7 @@
                         @elseif($rsv->checkin==1)
                             <td class="success">Verified</td>
                         @else
-                            <td><a href="{{route('delres','ivtcd='.$rsv->invitation)}}">Cancel</a></td>
+                            <td><a href="{{route('delres','ivtcd='.$rsv->invitation)}}" class="cancel">取消</a></td>
                         @endif
                     </tr>
                 @endforeach
@@ -70,9 +70,9 @@
                 <div class="container-fluid">
                     <div class="back-box">
                         @if($cuTtRsv>=3)
-                            <h3>You have had 3 reservations, to reserve another day, you need to cancel an old one.</h3>
+                            <h3>您已有三个预约，要新建预约请先取消一个</h3>
                         @elseif($ttDays==$cuDay)
-                            <h3>Today is the last day of the festival, please pay attention to the next event.</h3>
+                            <h3>节日时间已到，请关注其他活动</h3>
                         @else
                             <form method="POST" class="form-horizontal" action="{{route('reserv')}}">
                             @csrf
