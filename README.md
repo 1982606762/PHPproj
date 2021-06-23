@@ -14,9 +14,9 @@
 
 2. 打开命令行并cd到代码目录
 
-3. 使用 `composer install`
+3. 使用 'composer install'
 
-4. 使用 `yarn install`
+4. 使用 'yarn install'
 
 5. 将 <b>.env.example</b>文件名改为 <b>.env</b>并将
 
