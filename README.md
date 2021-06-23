@@ -32,4 +32,4 @@
 
    字段改为本地数据库相关信息
 
-6. 命令行中输入`php artisan serve`即可启动服务器
+6. 命令行中输入'php artisan serve'即可启动服务器
