@@ -27,7 +27,6 @@
    DB_DATABASE=laravel
    DB_USERNAME=root
    DB_PASSWORD=
-   
    ```
 
    字段改为本地数据库相关信息
