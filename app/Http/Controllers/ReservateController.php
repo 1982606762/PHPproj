@@ -17,11 +17,11 @@ class ReservateController extends Controller
         $rda = $request->post('rsv_day_at');
         if (Auth::check()) {
             $currentUser = Auth::user();
-            $checkIfHasRsvThatDay = Reservation::where('reserve_date_at', $rda)->where('email', $currentUser['email'])
+            $checkReserve = Reservation::where('reserve_date_at', $rda)->where('email', $currentUser['email'])
                 ->count();
-            if ($checkIfHasRsvThatDay == 0) {
-                $totalRsv = Reservation::where('reserve_date_at', $rda)->count();
-                if ($totalRsv < 10) {
+            if ($checkReserve == 0) {
+                $allReserve = Reservation::where('reserve_date_at', $rda)->count();
+                if ($allReserve < 10) {
                     $data = [
                         'invitation' => $this->getUniqueInvitationCode(),
                         'email' => $currentUser['email'],
@@ -61,15 +61,14 @@ class ReservateController extends Controller
     public function checkin(Request $request)
     {
         $reservation = new Reservation();
-        $errorMsg = array();
         $invitationCode = $request->post('ivtcd');
         $pwd = $request->post('pwd');
         // echo($invitationCode.$pwd);
         if ($invitationCode != null && $pwd != null) {
             if (Auth::check()) {
                 $currentUser = Auth::user();
-                $checkIfHaveTheIC = Reservation::where('invitation', $invitationCode)->count();
-                if ($checkIfHaveTheIC != 0) {
+                $checkIfIC = Reservation::where('invitation', $invitationCode)->count();
+                if ($checkIfIC != 0) {
                     if (Hash::check($pwd, $currentUser->getAuthPassword())) {
                         $ifRightUser = Reservation::where('email', $currentUser['email'])
                             ->where('invitation', $invitationCode)->count();
@@ -84,22 +83,28 @@ class ReservateController extends Controller
                                 session()->flash('info', '签到成功!' . $currentUser['name']);
                                 return redirect()->route('users.show', Auth::user());
                             } else {
-                                $errorMsg['haveVerified'] = 1;
+                                
+                                session()->flush('danger', '邀请码已验证');
                             }
                         } else {
-                            $errorMsg['notMatch'] = 1;
+                            
+                            session()->flush('danger', '邀请码不属于你');
                         }
                     } else {
-                        $errorMsg['wrongPwd'] = 1;
+                        
+                        session()->flush('danger', '密码错误');
                     }
                 } else {
-                    $errorMsg['dontHave'] = 1;
+                 
+                    session()->flush('danger', '邀请码不存在');
                 }
             } else {
-                $errorMsg['auth'] = 1;
+               
+                session()->flush('danger', '用户未经认证，请重新登陆');
             }
         } else {
-            $errorMsg['loseParam'] = 1;
+           
+            session()->flush('danger', '缺少一些必要的参数，请重新登陆');
         }
     }
 
