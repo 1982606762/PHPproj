@@ -10,6 +10,11 @@ use SebastianBergmann\Environment\Console;
 
 class ReservateController extends Controller
 {
+    public function __construct() {
+        $this->middleware('guest', [
+            'only' => []
+        ]);
+    }
     public function store(Request $request)
     {
         $reservation = new reservation();
@@ -83,27 +88,27 @@ class ReservateController extends Controller
                                 session()->flash('info', '签到成功!' . $currentUser['name']);
                                 return redirect()->route('users.show', Auth::user());
                             } else {
-                                
+
                                 session()->flush('danger', '邀请码已验证');
                             }
                         } else {
-                            
+
                             session()->flush('danger', '邀请码不属于你');
                         }
                     } else {
-                        
+
                         session()->flush('danger', '密码错误');
                     }
                 } else {
-                 
+
                     session()->flush('danger', '邀请码不存在');
                 }
             } else {
-               
+
                 session()->flush('danger', '用户未经认证，请重新登陆');
             }
         } else {
-           
+
             session()->flush('danger', '缺少一些必要的参数，请重新登陆');
         }
     }
