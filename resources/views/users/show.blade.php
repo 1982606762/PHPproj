@@ -19,25 +19,25 @@
         <div style="width:100%;" class="center-block">
             <div class="form-inline">
                 <div class="form-group">
-                    <h3>The Carnival lasts for {{$GLOBALS['conf']['continue']}} days, today is Day{{$GLOBALS['conf']['now']}}.</h3>
+                    <h3>活动共有{{$GLOBALS['conf']['continue']}}天,今天是第{{$GLOBALS['conf']['now']}}天。</h3>
                 </div>
                 <div class="form-group" style="margin-left: 140px">
-                    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">New Reservation</button>
+                    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">新预约</button>
                 </div>
             </div>
         </div>
         <table class="table table-bordered table-hover text-center" style="margin-top:30px;">
             <thead>
             <tr class="active">
-                <th class="text-center">Reservation Date</th>
-                <th class="text-center">Invitation Code</th>
-                <th class="text-center" style="width: 90px;">Status</th>
+                <th class="text-center">预约日期</th>
+                <th class="text-center">邀请码</th>
+                <th class="text-center" style="width: 90px;">状态</th>
             </tr>
             </thead>
             <tbody>
             @if(empty($reservationInfo->toArray()))
                 <tr>
-                    <td colspan="3">No Reservation Yet.</td>
+                    <td colspan="3">当前还没有邀请</td>
                 </tr>
             @else
                 @foreach ($reservationInfo as $rsv)
@@ -45,9 +45,9 @@
                         <td>Day{{$rsv->reserve_date_at}}</td>
                         <td>{{$rsv->invitation}}</td>
                         @if($cuDay>$rsv->reserve_date_at)
-                            <td class="danger">Passed</td>
+                            <td class="danger">已过期</td>
                         @elseif($rsv->checkin==1)
-                            <td class="success">Verified</td>
+                            <td class="success">已使用</td>
                         @else
                             <td><a href="{{route('delres','ivtcd='.$rsv->invitation)}}" class="cancel">取消</a></td>
                         @endif
