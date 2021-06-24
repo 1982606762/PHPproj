@@ -7,18 +7,18 @@
                     @csrf
                     <div class="form-group">
                         <div class="input-group">
-                            <div class="input-group-addon">Invitation Code</div>
-                            <input type="text" class="form-control" name="ivtcd" placeholder="Input the 6-digit Invitation Code">
+                            <div class="input-group-addon">邀请码</div>
+                            <input type="text" class="form-control" name="ivtcd" >
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="input-group">
-                            <div class="input-group-addon">Password</div>
-                            <input type="password" class="form-control" name="pwd" placeholder="Input your account password">
+                            <div class="input-group-addon">密码</div>
+                            <input type="password" class="form-control" name="pwd">
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="submit" id="reserve" value="Check in" class="btn btn-primary">
+                        <input type="submit" id="reserve" value="报到" class="btn btn-primary">
                     </div>
                 </form>
         </div>
